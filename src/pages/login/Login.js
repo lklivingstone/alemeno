@@ -10,7 +10,6 @@ const Login = () => {
     const [username, setUsername]= useState("")
     const [password, setPassword]= useState("")
     const dispatch= useDispatch()
-    // const { isFetching, error }= useSelector(state=>state.user)
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -43,7 +42,6 @@ const Login = () => {
                 </h1>
                 <form style={{
                     display: "flex",
-                    // flexWrap: "wrap",
                     flexDirection: "column"}}>
                     <input style={{
                         flex: "1",
@@ -63,7 +61,6 @@ const Login = () => {
                         "&:hover": {
                             textDecoration: "none",
                             cursor: "pointer"
-                            // backgroundColor: Colors.light_gray
                         }}}>Forgot Password</a>
                     <a href="/register" style={{
                         margin: "5px 10px",
@@ -73,7 +70,6 @@ const Login = () => {
                         "&:hover": {
                             textDecoration: "none",
                             cursor: "pointer"
-                            // backgroundColor: Colors.light_gray
                         }}}>Create new account</a>
                 </form>
                 <div style={{display: "flex", alignItems: "center", flexDirection: "column"}} >
@@ -95,19 +91,7 @@ const Login = () => {
                             }}} variant="filled" onClick={handleClick}>
                                 LOGIN
                         </button>
-                        {/* <button style={{
-                            padding: "10px 65px",
-                            border: "none",
-                            cursor: "pointer",
-                            fontFamily: 'Reem Kufi Fun',
-                            backgroundColor: "rgb(48, 48, 48)",
-                            color: "#edf5e1",
-                            "&:disabled" : {
-                                color: "#e1e6f5",
-                                cursor: "not-allowed"
-                            }}} variant="filled" onClick={handleClick} disabled={isFetching}>
-                                {isFetching ? "LOGGING IN..." : "LOGIN"}
-                        </button> */}
+                     
                     </div>
                     <div style={{
                         display:"flex",
@@ -120,17 +104,13 @@ const Login = () => {
                             "&:hover": {
                                 textDecoration: "none",
                                 cursor: "pointer"
-                                // backgroundColor: Colors.light_gray
                             }, 
                             textDecoration: "none",
                             color:"rgb(48, 48, 48)"}} >
                                 Register
                         </Link>
                     </div>
-                    {/* {error && <span style={{
-                        color: "red"}}>
-                            Something went wrong!
-                        </span>} */}
+                
                 </div>
             </div>
         </div>

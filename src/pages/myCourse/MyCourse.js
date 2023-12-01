@@ -22,35 +22,23 @@ import Navbar from "../../components/navbar/Navbar";
 import Button from '@mui/material/Button';
 
 const MyCourse = () => {
-    // const token = useSelector((state) => state.user.token);
-    // console.log(token)    
     const userID = useSelector((state) => state.user.user_id);
-    // const dispatch= useDispatch()
     const location= useLocation();
     const courseID = location.pathname.split("/")[2];
 
     console.log(courseID, userID)
     const [course, setCourse]= useState(null);
-    // const [filteredCourses, setFilteredCourses]= useState([]);
-    // const [searchCourseInput, setSearchCourseInput] = useState("");
-    // const [searchCourseValue, setSearchCourseValue]= useState("");
-    // const [searchInstructorInput, setSearchInstructorInput] = useState("");
-    // const [searchInstructorValue, setSearchInstructorValue]= useState("");
- 
-
     useEffect(() => {
         const getCourses = async () => {
             try{
                 const config = {
                     headers : {
-                    //   'token': `Bearer ${token}`
                     }
                 };
                 const res= await axios.get(`http://localhost:5000/api/course/order/${courseID}`)
                 console.log(res.data['courses'])
 
                 setCourse(res.data['courses'])
-                // setCoursesList(res)
             } catch(error) {
                 if (error.response["status"] === 403 || error.response["status"] === 401) {
                 }

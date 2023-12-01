@@ -3,28 +3,19 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Logout from './pages/logout/Logout';
-import { useState, useEffect } from "react";
 import {
   BrowserRouter,
   Routes,
   Route,
   Navigate
 } from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux';
-import { changeSocket } from './redux/UserRedux';
-import io from 'socket.io-client';
+import { useSelector } from 'react-redux';
 import Course from './pages/course/Course';
 import MyCourses from './pages/myCourses/MyCourses';
 import MyCourse from './pages/myCourse/MyCourse';
 
 function App() {
-  // const [socket, setSocket] = useState(null);
-  // const dispatch = useDispatch();
   const user= useSelector((state)=>state.user.user_id)
-
-  // useEffect(() => {
-    
-  // }, [])
 
   console.log(user)
 
@@ -38,7 +29,6 @@ function App() {
         <Route path="/course/:id" element= {user ? <Course /> : <Navigate to="/login" replace /> } />
         <Route path="/mycourses" element= {user ? <MyCourses /> : <Navigate to="/login" replace /> } />
         <Route path="/mycourse/:id" element= {user ? <MyCourse /> : <Navigate to="/login" replace /> } />
-        {/* <Route path="/product/:id" element= {<SingleProduct />} /> */}
       </Routes>
     </BrowserRouter>
   );

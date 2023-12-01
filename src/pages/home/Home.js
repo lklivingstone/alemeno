@@ -10,9 +10,6 @@ import CardMedia from '@mui/material/CardMedia';
 import { logOut } from "../../redux/UserRedux";
 import logo from "./dunder.png";
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ProgressBar from "../../components/progressBar/ProgressBar";
-import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../../components/navbar/Navbar";
 import io from 'socket.io-client';
@@ -43,7 +40,6 @@ const Home = () => {
                 console.log(res.data["course"])
 
                 setCoursesList(res.data['course'])
-                // setCoursesList(res)
             } catch(error) {
                 if (error.response["status"] === 403 || error.response["status"] === 401) {
                     dispatch(logOut())
@@ -73,9 +69,6 @@ const Home = () => {
                     return course
                 }
                 ))
-            // setEditorValue((prevEditorValue) => {
-                
-            // });
         }
         socket.on("receive-changes", applyDeltas)
         return () => {
@@ -138,14 +131,9 @@ const Home = () => {
 
     const redirectCourse = (courseID) => {
         console.log("REDIRECT")
-        // redirect(`course/${courseID}`);
         navigate(`/course/${courseID}`);
     }
 
-
-    // const handleCardClick = (courseID) => {
-    //     // Redirect to the "/course/courseID" route
-    // };
 
     const likeCourseButton = (e) => {
         e.preventDefault();
@@ -241,8 +229,6 @@ const Home = () => {
                     onChange={(e)=>handleSearchCourseInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                {/* </div> */}
-                {/* <div className="search-bar"> */}
                 <InputBase
                     sx={{ ml: 1, flex: 1, variant:"outlined", }}
                     placeholder="Instructor name..."
@@ -250,7 +236,6 @@ const Home = () => {
                     onChange={(e)=>handleSearchInstructorInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                {/* </div> */}
             </div>
         </div>
 

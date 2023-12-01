@@ -1,11 +1,7 @@
-import { Button, CssBaseline } from "@mui/material"
-import { styled } from "@mui/system"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../api/RequestMethods";
-
-import { Link } from "react-router-dom";
 
 const Register = () => {
 

@@ -6,13 +6,11 @@ import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import { logOut } from "../../redux/UserRedux";
 import logo from "./dunder.png";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ProgressBar from "../../components/progressBar/ProgressBar";
-import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../../components/navbar/Navbar";
 import io from 'socket.io-client';
@@ -66,24 +64,12 @@ const MyCourses = () => {
         console.log(coursesList)
         socket.emit('send-changes', {courseID, currState})
     };
-    
-    // useEffect(() => {
-    //     const io_socket = io("http://localhost:8080");
-    //     console.log("SOCKET")
-    //     setSocket(io_socket);
-        
-    //     return () => {
-    //       io_socket.disconnect();
-    //     }
-    // }, []); 
 
     useEffect(() => {
         if (socket == null) return;
         const applyDeltas = (delta) => {
             console.log(delta)
-            // setEditorValue((prevEditorValue) => {
-                
-            // });
+
         }
         socket.on("receive-changes", applyDeltas)
         return () => {
@@ -103,7 +89,6 @@ const MyCourses = () => {
                 console.log(res.data['courses'])
 
                 setCoursesList(res.data['courses'])
-                // setCoursesList(res)
             } catch(error) {
                 if (error.response["status"] === 403 || error.response["status"] === 401) {
                     dispatch(logOut())
@@ -136,13 +121,8 @@ const MyCourses = () => {
         setSearchInstructorInput(data)
     }
 
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     const handleSearchClick = (e) => {
-        // if (!isSearchOpen) {
-        //     setIsSearchOpen(true);
-        // }
-        // else {
 
             const queryCourse = searchCourseInput?.toLowerCase();
             const queryInstructor = searchInstructorInput?.toLowerCase();
@@ -158,7 +138,6 @@ const MyCourses = () => {
                 filteredItems = coursesList.filter((course) => regexInstructor.test(course.instructor?.toLowerCase()));
             }
             setFilteredCourses(filteredItems);
-        // }
     };
 
     const handleResetClick = async (e) => {
@@ -181,19 +160,8 @@ const MyCourses = () => {
 
     const redirectCourse = (courseID) => {
         console.log("REDIRECT")
-        // redirect(`course/${courseID}`);
         navigate(`/mycourse/${courseID}`);
     }
-
-
-    // const handleCardClick = (courseID) => {
-    //     // Redirect to the "/course/courseID" route
-    // };
-
-    // const likeCourseButton = (e) => {
-    //     e.preventDefault();
-    //     console.log(e)
-    // }
 
     const renderCourses = filteredCourses?.map((course) => (
         <Card
@@ -292,8 +260,6 @@ const MyCourses = () => {
                     onChange={(e)=>handleSearchCourseInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                {/* </div> */}
-                {/* <div className="search-bar"> */}
                 <InputBase
                     sx={{ ml: 1, flex: 1, variant:"outlined", }}
                     placeholder="Instructor name..."
@@ -301,7 +267,6 @@ const MyCourses = () => {
                     onChange={(e)=>handleSearchInstructorInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                {/* </div> */}
             </div>
         </div>
 

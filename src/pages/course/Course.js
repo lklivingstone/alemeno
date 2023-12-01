@@ -1,55 +1,36 @@
-import { useSelector, useDispatch  } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import SearchIcon from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import { logOut } from "../../redux/UserRedux";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ProgressBar from "../../components/progressBar/ProgressBar";
 import logo from "./dunder.png";
 import { useLocation } from "react-router-dom";
 import TimelapseIcon from '@mui/icons-material/Timelapse';
-import RotateRightIcon from '@mui/icons-material/RotateRight';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import "./Course.css"
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Navbar from "../../components/navbar/Navbar";
 
 const Course = () => {
-    // const token = useSelector((state) => state.user.token);
-    // console.log(token)    
     const userID = useSelector((state) => state.user.user_id);
-    // const dispatch= useDispatch()
     const location= useLocation();
     const courseID = location.pathname.split("/")[2];
 
     console.log(courseID, userID)
     const [course, setCourse]= useState(null);
-    // const [filteredCourses, setFilteredCourses]= useState([]);
-    // const [searchCourseInput, setSearchCourseInput] = useState("");
-    // const [searchCourseValue, setSearchCourseValue]= useState("");
-    // const [searchInstructorInput, setSearchInstructorInput] = useState("");
-    // const [searchInstructorValue, setSearchInstructorValue]= useState("");
- 
 
     useEffect(() => {
         const getCourses = async () => {
             try{
                 const config = {
                     headers : {
-                    //   'token': `Bearer ${token}`
                     }
                 };
                 const res= await axios.get(`http://localhost:5000/api/course/${courseID}`)
                 console.log(res.data['course'])
 
                 setCourse(res.data['course'])
-                // setCoursesList(res)
             } catch(error) {
                 if (error.response["status"] === 403 || error.response["status"] === 401) {
                 }
